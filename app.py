@@ -5,6 +5,17 @@ from streamlit_geolocation import streamlit_geolocation
 
 st.set_page_config(page_title="Golf GPS Shot Tracker", layout="wide")
 
+st.markdown("""
+<style>
+/* Zoom in on the geolocation component iframe to make the button big and easy to tap */
+iframe {
+    transform: scale(1.6);
+    transform-origin: top left;
+    margin-bottom: 40px;
+}
+</style>
+""", unsafe_allow_html=True)
+
 # Custom CSS to make the geolocation button much larger and easier to tap on mobile
 st.markdown("""
 <style>
