@@ -9,7 +9,7 @@ st.markdown("""
 <style>
 /* Zoom in on the geolocation component iframe to make the button big and easy to tap */
 iframe {
-    transform: scale(1.6);
+    transform: scale(1.12);
     transform-origin: top left;
     margin-bottom: 100px;
 }
