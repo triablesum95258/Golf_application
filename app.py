@@ -101,6 +101,38 @@ if st.session_state.shots:
             
             st.table(pd.DataFrame(distances))
 
+import folium
+from streamlit_folium import st_folium
+
+# Inside your current hole shots section:
+if not current_hole_shots.empty:
+    st.write("### Shot Path Map")
+    
+    # Center map on the first shot of the hole
+    first_shot = current_hole_shots.iloc[0]
+    m = folium.Map(location=[first_shot["Latitude"], first_shot["Longitude"]], zoom_start=18)
+    
+    # Collect coordinates for line connection
+    points = []
+    for index, row in current_hole_shots.iterrows():
+        lat, lon = row["Latitude"], row["Longitude"]
+        shot_num = row["Shot"]
+        points.append((lat, lon))
+        
+        # Add a marker for each shot
+        folium.Marker(
+            location=[lat, lon],
+            popup=f"Shot {shot_num}",
+            tooltip=f"Shot {shot_num}"
+        ).add_to(m)
+        
+    # Draw a line connecting the shots in order
+    if len(points) > 1:
+        folium.PolyLine(points, color="blue", weight=4, opacity=0.8).add_to(m)
+        
+    # Display the map in Streamlit
+    st_folium(m, width=700, height=450)
+
 # Manual Putting & Hole-Out Section
 st.subheader("🏁 Green & Hole-Out Log")
 putts = st.number_input("Number of Putts on Green", min_value=0, max_value=6, value=2)
