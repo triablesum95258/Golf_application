@@ -65,6 +65,8 @@ if not current_hole_shots.empty:
     st.dataframe(current_hole_shots)
 
     st.write("### Shot Path Map")
+    
+    # Start map centered on the first shot
     first_shot = current_hole_shots.iloc[0]
     m = folium.Map(location=[first_shot["Latitude"], first_shot["Longitude"]], zoom_start=18)
     
@@ -80,10 +82,15 @@ if not current_hole_shots.empty:
             tooltip=f"Shot {shot_num}"
         ).add_to(m)
         
+    # Draw a line connecting the shots in order
     if len(points) > 1:
         folium.PolyLine(points, color="blue", weight=4, opacity=0.8).add_to(m)
         
-    st_folium(m, width=700, height=450)
+        # Automatically fit the map boundaries to include all shots nicely
+        m.fit_bounds(points, padding=(30, 30))
+        
+    # Render map full-width so it fits mobile screens properly
+    st_folium(m, use_container_width=True, height=400)
 
     # Calculate distances
     if len(current_hole_shots) > 1:
