@@ -10,11 +10,10 @@ st.set_page_config(page_title="Golf GPS Shot Tracker", layout="wide")
 # Custom CSS for sizing the button
 st.markdown("""
 <style>
-iframe {
+/* Target only the geolocation component container instead of all iframes */
+div.element-container iframe {
     transform: scale(1.5);
     transform-origin: top left;
-    margin-bottom: 30px;
-    height: 50px !important;
 }
 </style>
 """, unsafe_allow_html=True)
