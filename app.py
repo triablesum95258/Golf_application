@@ -11,7 +11,7 @@ st.markdown("""
 iframe {
     transform: scale(1.6);
     transform-origin: top left;
-    margin-bottom: 40px;
+    margin-bottom: 100px;
 }
 </style>
 """, unsafe_allow_html=True)
