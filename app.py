@@ -7,11 +7,12 @@ st.set_page_config(page_title="Golf GPS Shot Tracker", layout="wide")
 
 st.markdown("""
 <style>
-/* Zoom in on the geolocation component iframe to make the button big and easy to tap */
+/* Use a controlled scale and allocate layout height to prevent overlap */
 iframe {
-    transform: scale(5.0);
+    transform: scale(1.8);
     transform-origin: top left;
-    margin-bottom: 100000px;
+    margin-bottom: 50px;
+    height: 50px !important;
 }
 </style>
 """, unsafe_allow_html=True)
